@@ -1,0 +1,12 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #fafafa;
+  display: flex;
+  justify-content: center;
+  font: 400 18px 'Yanone Kaffeesatz', 'Roboto', sans-serif;
+}
