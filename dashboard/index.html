@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/feather-icons"></script>
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <link rel="stylesheet" href="../assets/css/home.css" >
@@ -26,6 +28,7 @@
         </label>
       </form>
       <p class="username">Samuel Pereira da Silva</p>
+      <i data-feather="log-out" id="logout" onclick="logout()"></i>
     </header>
     <div id="addNewTask" data-toggle="modal" data-target="#modalExemplo" class="card send-task">+</div>
 
@@ -110,5 +113,8 @@
   <script src="../assets/js/moment.min.js"></script>
   <script src="../assets/js/axios.min.js"></script>
   <script src="../assets/js/home.js"></script>
+  <script>
+    feather.replace()
+  </script>
 </body>
 </html>

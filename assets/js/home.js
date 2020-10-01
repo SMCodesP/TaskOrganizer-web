@@ -70,6 +70,10 @@ add_new_task.onsubmit = async (event) => {
 window.onload = async () => {
   const token = localStorage.getItem('token')
 
+  if (!token) {
+    window.location.replace('/')
+  }
+
   try {
     const response = await axios.get('https://tasks-organizer.herokuapp.com/tasks', {
       headers: {
@@ -83,4 +87,10 @@ window.onload = async () => {
     console.log(error)
     alert((!error.response || error.response.status === 500) ? 'Houve um erro desconhecido, contate aos desenvolvedores.' : error.response.data)
   }
+}
+
+function logout() {
+  localStorage.removeItem('token')
+
+  window.location.replace('/')
 }

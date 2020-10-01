@@ -187,3 +187,20 @@ input#img {
   text-align: center;
   margin: 15px;
 }
+
+#logout {
+  margin: 4px;
+  margin-left: 10px;
+  stroke-width: 3px;
+  cursor: pointer;
+
+  transition: filter .2s;
+}
+
+#logout:hover {
+  filter: brightness(300%);
+}
+
+#logout:active {
+  filter: brightness(600%);
+}
