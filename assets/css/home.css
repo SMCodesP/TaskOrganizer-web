@@ -177,3 +177,13 @@ input#img {
   opacity: 0;
   display: none;
 }
+
+.task {
+  margin-bottom: 15px;
+}
+
+.empty-task {
+  width: 100%;
+  text-align: center;
+  margin: 15px;
+}

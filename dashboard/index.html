@@ -30,7 +30,7 @@
     <div id="addNewTask" data-toggle="modal" data-target="#modalExemplo" class="card send-task">+</div>
 
     <div class="options">
-      <div id="selected" class="text-danger option">A fazer <span>1</span></div>
+      <div id="selected" class="text-danger option">A fazer <span id="quantity-task">-</span></div>
       <div class="text-success option">Concluídas <span>6</span></div>
     </div>
 
@@ -60,7 +60,7 @@
         class="etec"
       />
     </footer>
-    <form>
+    <form id="add-new-task">
       <div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
