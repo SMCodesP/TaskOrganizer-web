@@ -27,6 +27,7 @@ form.onsubmit = async (event) => {
 
     console.log(response.data.token)
     localStorage.setItem('token', response.data.token)
+    localStorage.setItem('user', JSON.stringify(response.data.user))
     window.location.replace("/dashboard")
   } catch (error) {
     console.log(error)

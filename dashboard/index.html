@@ -20,6 +20,7 @@
         <label
           for="img"
           class="user-icon"
+          id="user-icon"
         >
           <img
             src="../assets/images/camera.png"
@@ -27,7 +28,7 @@
           />
         </label>
       </form>
-      <p class="username">Samuel Pereira da Silva</p>
+      <p id="username" class="username">------ ------</p>
       <i data-feather="log-out" id="logout" onclick="logout()"></i>
     </header>
     <div id="addNewTask" data-toggle="modal" data-target="#modalExemplo" class="card send-task">+</div>
@@ -110,6 +111,23 @@
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  <script>
+    const token = localStorage.getItem('token')
+    const user = localStorage.getItem('user')
+
+    if (!token || !user) {
+      localStorage.clear()
+      window.location.replace('/')
+    } else {
+      const userParsing = JSON.parse(user)
+
+      console.log(userParsing.username)
+      const componentUsername = document.getElementById('username')
+      const user_icon = document.getElementById('user-icon')
+      componentUsername.innerHTML = userParsing.username
+      user_icon.style.backgroundImage = `url('${userParsing.avatar_url}')`
+    }
+  </script>
   <script src="../assets/js/moment.min.js"></script>
   <script src="../assets/js/axios.min.js"></script>
   <script src="../assets/js/home.js"></script>

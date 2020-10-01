@@ -5,8 +5,6 @@ function renderTasks() {
   const container_tasks = document.getElementById('container-tasks')
   const quantity_task = document.getElementById('quantity-task')
   
-  console.log(tasks)
-  console.log(tasks.length)
   quantity_task.innerHTML = tasks.length
 
   if (tasks.length < 1) {
@@ -14,11 +12,14 @@ function renderTasks() {
       <h1 class="empty-task">Você não tem nenhuma tarefa.</h1>
     `
   } else {
-    tasks.sort((a, b) => a.due_timestamp - b.due_timestamp).forEach((task) => {
+    container_tasks.innerHTML = ''
+    tasks.sort((a, b) => new Date(a.due_timestamp).valueOf() - new Date(b.due_timestamp).valueOf()).forEach((task) => {
+      const timestamp = new Date(task.due_timestamp).valueOf()
+
       container_tasks.innerHTML += `
         <div class="card task">
           <div class="card-header">
-            ${task.matter_title}
+            ${task.matter_title} ${(timestamp < new Date().valueOf()) && `<span style="font-family: sans-serif;" class="badge badge-danger">Em atraso</span>`}
           </div>
           <div class="card-body">
             <p class="text-muted">Prazo ${moment(task.due_timestamp).format('HH:mm:ss - DD/MM/YYYY')}</p>
@@ -58,6 +59,8 @@ add_new_task.onsubmit = async (event) => {
     tasks.push(task)
     console.log(response)
     renderTasks()
+    $('#add-new-task').trigger("reset");
+    $('#modalExemplo').modal('hide');
 
   } catch (error) {
     console.log(error)
@@ -69,10 +72,6 @@ add_new_task.onsubmit = async (event) => {
 
 window.onload = async () => {
   const token = localStorage.getItem('token')
-
-  if (!token) {
-    window.location.replace('/')
-  }
 
   try {
     const response = await axios.get('https://tasks-organizer.herokuapp.com/tasks', {
