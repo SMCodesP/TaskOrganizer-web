@@ -65,7 +65,7 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel"><input type="text" name="matter" placeholder="Matéria da tarefa" /></h5>
+              <h5 class="modal-title" id="exampleModalLabel"><input type="text" name="matter_title" placeholder="Matéria da tarefa" /></h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -74,29 +74,29 @@
               <div class="form-row">
                 <div class="col-md-5 mb-3">
                   <label for="validationDefault01">Título da tarefa <span style="font-family: sans-serif;" class="badge badge-danger">Obrigatório</span></label>
-                  <input type="text" class="form-control" id="validationDefault01" placeholder="Digite aqui o título da tarefa" required>
+                  <input name="task_title" type="text" class="form-control" id="validationDefault01" placeholder="Digite aqui o título da tarefa" required>
                 </div>
               </div>
               <div class="form-row">
                 <div class="col-md-9 mb-3">
                   <label for="validationTextarea">Descrição (opcional)</label>
-                  <textarea class="form-control " id="validationTextarea" placeholder="Digite aqui a descrição da tarefa, podendo conter as instruções da mesma." required></textarea>
+                  <textarea name="description" class="form-control " id="validationTextarea" placeholder="Digite aqui a descrição da tarefa, podendo conter as instruções da mesma."></textarea>
                 </div>
               </div>
               <div class="form-row">
                 <div class="col-md-5 mb-3">
                   <label for="validationDefault01">Data de vencimento <span style="font-family: sans-serif;" class="badge badge-danger">Obrigatório</span></label>
-                  <input type="date" class="form-control" id="validationDefault01" placeholder="Digite aqui a data de vencimento" required>
+                  <input name="due_date" type="date" class="form-control" id="validationDefault01" placeholder="Digite aqui a data de vencimento" required>
                 </div>
                 <div class="col-md-5 mb-3">
                   <label for="validationDefault01">Horário de vencimento <span style="font-family: sans-serif;" class="badge badge-danger">Obrigatório</span></label>
-                  <input type="time" class="form-control" id="validationDefault01" placeholder="Digite aqui o horário de vencimento" required>
+                  <input name="due_hour" type="time" class="form-control" id="validationDefault01" placeholder="Digite aqui o horário de vencimento" required>
                 </div>
               </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-              <button type="button" class="btn btn-primary">Adicionar</button>
+              <button type="submit" class="btn btn-primary">Adicionar</button>
             </div>
           </div>
         </div>
@@ -107,7 +107,8 @@
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-  <script src="/assets/js/axios.min.js"></script>
+  <script src="../assets/js/moment.min.js"></script>
+  <script src="../assets/js/axios.min.js"></script>
   <script src="../assets/js/home.js"></script>
 </body>
 </html>
