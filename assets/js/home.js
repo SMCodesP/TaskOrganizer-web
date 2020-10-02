@@ -19,7 +19,7 @@ function renderTasks() {
       container_tasks.innerHTML += `
         <div class="card task">
           <div class="card-header">
-            ${task.matter_title} ${(timestamp < new Date().valueOf()) && `<span style="font-family: sans-serif;" class="badge badge-danger">Em atraso</span>`}
+            ${task.matter_title} ${(timestamp < new Date().valueOf()) ? `<span style="font-family: sans-serif;" class="badge badge-danger">Em atraso</span>` : ''}
           </div>
           <div class="card-body">
             <p class="text-muted">Prazo ${moment(task.due_timestamp).format('HH:mm:ss - DD/MM/YYYY')}</p>

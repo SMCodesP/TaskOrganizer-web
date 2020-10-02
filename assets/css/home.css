@@ -1,22 +1,68 @@
 .banner {
-  width: 100%;
-  height: 350px;
+  width: 75%;
+  height: 330px;
   background-image: url('../images/collab_two.jpeg');
-  background-size: 100% 350px;
+  background-size: 100% 325px;
   background-repeat: no-repeat;
+  background-color: #fafafa;
   filter: brightness(85%);
   display: flex;
+  margin: auto;
   align-items: flex-end;
+  box-sizing: content-box;
+  border-left: 2px solid #ccc;
+  border-right: 2px solid #ccc;
+}
+
+.menu {
+  width: 75%;
+  margin: auto;
+  background: #fafafa;
+  box-sizing: content-box;
+  display: flex;
+  border-left: 2px solid #999;
+  border-right: 2px solid #999;
+  border-bottom: 2px solid #999;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  justify-content: flex-end;
+  list-style: none;
+}
+
+.menu li {
+  cursor: pointer;
+  margin: 5px 5px 0 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #3332;
+  transition: background .5s;
+}
+
+.menu li:hover {
+  background: #3337;
+}
+
+.menu li a {
+  padding: 10px 15px;
+}
+
+.menu .actived {
+  background: #3337;
+  cursor: not-allowed;
 }
 
 .user-icon {
-  width: 128px;
-  height: 128px;
-  background-size: 128px;
+  width: 116px;
+  height: 116px;
+  background-size: 116px;
   background-repeat: no-repeat;
   filter: brightness(115%);
   border-radius: 64px;
-  top: 64px;
+  top: 43px;
+  border: 4px solid #333;
   left: 15px;
   position: relative;
   cursor: pointer;
@@ -37,15 +83,18 @@
 }
 
 .user-icon:hover {
-  box-shadow: 0 0 8px #333333;
+  box-shadow: 0 0 5px #333333;
   filter: brightness(75%);
 }
 
 .username {
-  color: #333333;
+  color: #fafafa;
   margin: 0;
-  margin-left: 32px;
-  font-size: 28px;
+  background: #333;
+  padding: 5px 5px 5px 28px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  font-size: 23px;
 }
 
 .send-task {
@@ -188,18 +237,33 @@ input#img {
 }
 
 #logout {
+  color: #e02041;
   margin: 4px;
   margin-left: 10px;
   stroke-width: 3px;
   cursor: pointer;
+  align-self: flex-end;
 
   transition: filter .2s;
 }
 
 #logout:hover {
-  filter: brightness(300%);
+  filter: brightness(75%);
 }
 
 #logout:active {
-  filter: brightness(600%);
+  filter: brightness(50%);
+}
+
+.logout {
+  color: #e02041 !important;
+  transition: filter .2s;
+  background: transparent !important;
+  border-left: 1px solid #3332;
+  border-right: 1px solid #3332;
+  border-top: 1px solid #3332;
+}
+
+.logout:hover {
+  background: #3332 !important;
 }
