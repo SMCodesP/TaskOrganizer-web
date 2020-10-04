@@ -36,7 +36,7 @@ body {
 .user-icon {
   width: 116px;
   height: 116px;
-  background-size: 116px;
+  background-size: 116px 116px;
   background-repeat: no-repeat;
   filter: brightness(115%);
   border-radius: 64px;

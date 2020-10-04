@@ -14,7 +14,7 @@
   <div class="w-100 container-content">
     <div id="container-register">
       <h1>Crie sua conta</h1>
-      <form id="register-submit">
+      <form id="register-submit" enctype="multipart/form-data">
         <div class="form-group">
           <label for="exampleInputEmail1">Digite seu nome</label>
           <input data-type="username" type="text" class="form-control" id="exampleInputEmail1" placeholder="Seu nome">
@@ -34,7 +34,7 @@
             <label
               for="img"
               class="user-icon"
-              id="user-icon"
+              id="testando"
             >
               <img
                 src="../assets/images/camera.png"
@@ -44,6 +44,7 @@
           </form>
         </div>
         <button type="submit" class="btn btn-primary">Cadastrar</button>
+        <a href="/"><button type="submit" class="btn btn-link">Já possuí uma conta?</button></a>
       </form>
     </div>
     <img src="../assets/images/logo.png" class="logo-initial" />
