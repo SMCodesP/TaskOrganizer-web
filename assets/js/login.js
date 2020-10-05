@@ -1,12 +1,13 @@
 const form = document.getElementById('login-submit')
 
-window.onload = () => {
+function load() {
   const token = localStorage.getItem('token')
 
   if (token) {
     window.location.replace('/dashboard')
   }
 }
+load()
 
 form.onsubmit = async (event) => {
   event.preventDefault()
@@ -25,7 +26,6 @@ form.onsubmit = async (event) => {
       password,
     })
 
-    console.log(response.data.token)
     localStorage.setItem('token', response.data.token)
     localStorage.setItem('user', JSON.stringify(response.data.user))
     window.location.replace("/dashboard")

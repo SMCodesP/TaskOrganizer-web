@@ -1,20 +1,84 @@
 let tasks = []
+let tasks_completed = []
+let completed = false
 const add_new_task = document.getElementById('add-new-task')
 
-function renderTasks() {
-  const container_tasks = document.getElementById('container-tasks')
-  const quantity_task = document.getElementById('quantity-task')
-  
-  quantity_task.innerHTML = tasks.length
+function openModalTask(modal) {
+  $(modal).modal('show')
+}
 
-  if (tasks.length < 1) {
+function completeTask(task) {
+}
+
+function renderTasks(completed_local) {
+  const container_tasks = $('#container-tasks')[0]
+  const quantity_task = $('#quantity-task')[0]
+  const quantity_task_completed = $('#quantity-task-completed')[0]
+  const model_task = $('#models')[0]
+  let tasks_locate;
+
+  if (completed_local != undefined) {
+    completed = completed_local
+  }
+
+  if (!completed) {
+    $('#closed').removeClass('selected_completed')
+    $('#waiting').addClass('selected')
+    tasks_locate = tasks
+  } else {
+    $('#closed').addClass('selected_completed')
+    $('#waiting').removeClass('selected')
+    tasks_locate = tasks_completed
+  }
+  
+  quantity_task.innerHTML = tasks_locate.length
+  quantity_task_completed.innerHTML = tasks_completed.length
+
+  if (tasks_locate.length < 1) {
     container_tasks.innerHTML += `
       <h1 class="empty-task">Você não tem nenhuma tarefa.</h1>
     `
   } else {
     container_tasks.innerHTML = ''
-    tasks.sort((a, b) => new Date(a.due_timestamp).valueOf() - new Date(b.due_timestamp).valueOf()).forEach((task) => {
+    model_task.innerHTML = ''
+    tasks_locate.sort((a, b) => new Date(a.due_timestamp).valueOf() - new Date(b.due_timestamp).valueOf()).forEach((task, index) => {
       const timestamp = new Date(task.due_timestamp).valueOf()
+
+      model_task.innerHTML += `
+        <div class="modal fade" id="${task.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-matter-title-task" id="exampleModalLabel">${task.matter_title}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-row">
+                <div class="col-md-5 mb-3">
+                  <label class="modal-task-title">${task.task_title}</label>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-md-9 mb-3">
+                  <label class="modal-task-description">${task.description}</label>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-md-5 mb-3">
+                  <label class="modal-task-date">${moment(task.due_timestamp).format('HH:mm:ss - DD/MM/YYYY')}</label>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+              <button onclick="completeTask(${task.id})" type="submit" class="btn btn-primary">Concluir</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      `
 
       container_tasks.innerHTML += `
         <div class="card task">
@@ -25,7 +89,7 @@ function renderTasks() {
             <p class="text-muted">Prazo ${moment(task.due_timestamp).format('HH:mm:ss - DD/MM/YYYY')}</p>
             <h2 class="card-title">${task.task_title}</h2>
             <p class="card-text">${task.description}</p>
-            <a href="#" class="btn btn-primary">Ver mais</a>
+            <button onclick="openModalTask('#${task.id}')" class="btn btn-primary">Ver mais</button>
           </div>
         </div>
       `
@@ -50,15 +114,15 @@ add_new_task.onsubmit = async (event) => {
       due_timestamp: new Date(`${due_date} ${due_hour}`).valueOf(),
       description,
     }
-    const response = await axios.post('https://tasks-organizer.herokuapp.com/task', task, {
+    await axios.post('https://tasks-organizer.herokuapp.com/task', task, {
       headers: {
         Authorization: `Bearer ${token}`
       }
     })
 
     tasks.push(task)
-    console.log(response)
-    renderTasks()
+    
+    renderTasks(false)
     $('#add-new-task').trigger("reset");
     $('#modalExemplo').modal('hide');
 
@@ -74,14 +138,20 @@ window.onload = async () => {
   const token = localStorage.getItem('token')
 
   try {
-    const response = await axios.get('https://tasks-organizer.herokuapp.com/tasks', {
+    const response = await axios.get('https://tasks-organizer.herokuapp.com/tasks?status=false', {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    const responseCompleted = await axios.get('https://tasks-organizer.herokuapp.com/tasks?status=true', {
       headers: {
         Authorization: `Bearer ${token}`
       }
     })
 
+    tasks_completed = [...tasks_completed, ...responseCompleted.data]
     tasks = [...tasks, ...response.data]
-    renderTasks()
+    renderTasks(false)
   } catch (error) {
     console.log(error)
     alert((!error.response || error.response.status === 500) ? 'Houve um erro desconhecido, contate aos desenvolvedores.' : error.response.data)
@@ -93,3 +163,41 @@ function logout() {
 
   window.location.replace('/')
 }
+
+function readURL(input) {
+	if (input.files && input.files[0]) {
+		var reader = new FileReader();
+		
+		reader.onload = async (e) => {
+      const response = prompt('Você tem certeza que quer trocar seu avatar? (Sim/Não)')
+      if (response.toLowerCase() === "sim" || response.toLowerCase() === "yes") {
+        try {
+          const token = localStorage.getItem('token')
+          let user = JSON.parse(localStorage.getItem('user'))
+          const formData = new FormData();
+          formData.append('avatar_img', input.files[0])
+  
+          document.getElementById('user-icon').style.backgroundImage = `url('${e.target.result}')`
+          const responsePutAvatar = await axios.put('https://tasks-organizer.herokuapp.com/avatar', formData, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": `multipart/form-data; boundary=${formData._boundary}`,
+            }
+          })
+          user.avatar_url = responsePutAvatar.data.avatar_url
+          localStorage.setItem('user', JSON.stringify(user))
+          alert('Você trocou de avatar com sucesso!')
+        } catch (err) {
+          console.log(err.response)
+          alert(`Erro » ${err.response.data.validation.body.message}`)          
+        }
+      }
+    }
+    
+		reader.readAsDataURL(input.files[0]);
+	}
+}
+
+$("#img").change(() => {
+	readURL($("#img")[0]);
+});

@@ -31,16 +31,16 @@
       <p id="username" class="username">------ ------</p>
     </header>
     <ul class="menu">
-        <li class="actived"><a>Tarefas</a></li>
-        <li><a href="/calendar">Calendário</a></li>
-        <li><a href="/options">Definições</a></li>
-        <li class="logout" onclick="logout()"><a>Sair</a></li>
+      <li class="actived"><a>Tarefas</a></li>
+      <li><a href="/calendar">Calendário</a></li>
+      <li><a href="/options">Definições</a></li>
+      <li class="logout" onclick="logout()"><a>Sair</a></li>
     </ul>
     <div id="addNewTask" data-toggle="modal" data-target="#modalExemplo" class="card send-task">+</div>
 
     <div class="options">
-      <div id="selected" class="text-danger option">A fazer <span id="quantity-task">-</span></div>
-      <div class="text-success option">Concluídas <span>6</span></div>
+      <div onclick="renderTasks(false)" id="waiting" class="text-danger option">A fazer <span id="quantity-task">-</span></div>
+      <div onclick="renderTasks(true)" id="closed" class="text-success option">Concluídas <span id="quantity-task-completed">-</span></div>
     </div>
 
     <div class="center" id="container-tasks">
@@ -69,6 +69,8 @@
         class="etec"
       />
     </footer>
+    <div id="models">
+    </div>
     <form id="add-new-task">
       <div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">

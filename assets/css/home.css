@@ -57,7 +57,7 @@
 .user-icon {
   width: 116px;
   height: 116px;
-  background-size: 116px;
+  background-size: 116px 116px;
   background-repeat: no-repeat;
   filter: brightness(115%);
   border-radius: 64px;
@@ -154,9 +154,14 @@
   margin: 0 10px;
 }
 
-#selected {
+.selected {
   filter: brightness(95%);
   border-bottom: 2px solid var(--danger);
+}
+
+.selected_completed {
+  filter: brightness(95%);
+  border-bottom: 2px solid var(--success);
 }
 
 .center {
@@ -266,4 +271,23 @@ input#img {
 
 .logout:hover {
   background: #3332 !important;
+}
+
+.modal-matter-title-task {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.modal-task-title {
+  font-size: 1.75rem;
+  font-weight: 500;
+}
+
+.modal-task-description {
+
+}
+
+.modal-task-date {
+  font-size: 0.9rem;
+  color: #555;
 }
