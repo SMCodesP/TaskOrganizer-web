@@ -47,6 +47,7 @@
 
 .menu li a {
   padding: 10px 15px;
+  color: #333;
 }
 
 .menu .actived {
