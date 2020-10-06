@@ -9,11 +9,13 @@ function openModalTask(modal) {
 
 async function takeOutTask(task) {
   try {
-    await axios.put(`https://tasks-organizer.herokuapp.com/task/${task}?status=false`, null, {
+    const response = await axios.put(`https://tasks-organizer.herokuapp.com/task/${task}?status=false`, null, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`
       }
     })
+
+    $('#quantity-points')[0].innerHTML = Number($('#quantity-points')[0].innerHTML) - (-response.data.rewarded)
 
     tasks = tasks.map((task_origin) => {
       const task_changed = {...task_origin, completed: !task_origin.completed}
@@ -29,11 +31,13 @@ async function takeOutTask(task) {
 
 async function completeTask(task) {
   try {
-    await axios.put(`https://tasks-organizer.herokuapp.com/task/${task}?status=true`, null, {
+    const response = await axios.put(`https://tasks-organizer.herokuapp.com/task/${task}?status=true`, null, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`
       }
     })
+
+    $('#quantity-points')[0].innerHTML = Number($('#quantity-points')[0].innerHTML) + response.data.rewarded
 
     tasks = tasks.map((task_origin) => {
       const task_changed = {...task_origin, completed: !task_origin.completed}

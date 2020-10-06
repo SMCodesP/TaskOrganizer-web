@@ -95,6 +95,8 @@
   padding: 5px 5px 5px 28px;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
+  display: flex;
+  align-items: center;
   font-size: 23px;
 }
 
@@ -153,6 +155,19 @@
   align-items: center;
   border-radius: 50%;
   margin: 0 10px;
+}
+
+.notation {
+  background: #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10px;
+  line-height: 25px;
+  font-size: 25px;
+  border-radius: 5px;
+  color: #333;
+  padding: 5px 5px;
 }
 
 .selected {

@@ -30,7 +30,7 @@ form.onsubmit = async (event) => {
     localStorage.setItem('user', JSON.stringify(response.data.user))
     window.location.replace("/dashboard")
   } catch (error) {
-    console.log(error)
+    console.log(error.response)
     alert((!error.response || error.response.status === 500) ? 'Houve um erro desconhecido, contate aos desenvolvedores.' : error.response.data)
   }
 
