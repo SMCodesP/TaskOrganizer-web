@@ -171,7 +171,7 @@ add_new_task.onsubmit = async (event) => {
 
   } catch (error) {
     console.log(error)
-    alert((!error.response || error.response.status === 500) ? 'Houve um erro desconhecido, contate aos desenvolvedores.' : error.response.data)
+    alert((!error.response || error.response.status === 500) ? 'Houve um erro desconhecido, contate aos desenvolvedores.' : error.response.data || 'Houve um erro desconhecido, contate aos desenvolvedores.')
   }
 
   return false
@@ -196,7 +196,7 @@ window.onload = async () => {
     renderTasks(false)
   } catch (error) {
     console.log(error)
-    alert((!error.response || error.response.status === 500) ? 'Houve um erro desconhecido, contate aos desenvolvedores.' : error.response.data)
+    alert((!error.response || error.response.status === 500) ? 'Houve um erro desconhecido, contate aos desenvolvedores.' : error.response.data || 'Houve um erro desconhecido, contate aos desenvolvedores.')
   }
 }
 

@@ -26,12 +26,13 @@ form.onsubmit = async (event) => {
       password,
     })
 
+    console.log(response)
     localStorage.setItem('token', response.data.token)
     localStorage.setItem('user', JSON.stringify(response.data.user))
     window.location.replace("/dashboard")
   } catch (error) {
     console.log(error.response)
-    alert((!error.response || error.response.status === 500) ? 'Houve um erro desconhecido, contate aos desenvolvedores.' : error.response.data)
+    alert((!error.response || error.response.status === 500) ? 'Houve um erro desconhecido, contate aos desenvolvedores.' : error.response.data.validation.body.message)
   }
 
   return false

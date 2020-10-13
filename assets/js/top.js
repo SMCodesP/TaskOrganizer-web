@@ -24,3 +24,42 @@ window.onload = async () => {
   }
 
 }
+
+
+function readURL(input) {
+	if (input.files && input.files[0]) {
+		var reader = new FileReader();
+		
+		reader.onload = async (e) => {
+      const response = confirm('Você tem certeza que quer trocar seu avatar?\nClique em `Cancel` para cancelar a troca ou clique em `Ok` para confirmar.')
+      if (response) {
+        try {
+          const token = localStorage.getItem('token')
+          let user = JSON.parse(localStorage.getItem('user'))
+          const formData = new FormData();
+          formData.append('avatar_img', input.files[0])
+  
+          document.getElementById('user-icon').style.backgroundImage = `url('${e.target.result}')`
+          const responsePutAvatar = await axios.put('https://redeheroes-bot-v2.herokuapp.com/avatar', formData, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": `multipart/form-data; boundary=${formData._boundary}`,
+            }
+          })
+          user.avatar_url = responsePutAvatar.data.avatar_url
+          localStorage.setItem('user', JSON.stringify(user))
+          alert('Você trocou de avatar com sucesso!')
+        } catch (err) {
+          console.log(err.response)
+          alert(`Erro » ${err.response.data.validation.body.message}`)          
+        }
+      }
+    }
+    
+		reader.readAsDataURL(input.files[0]);
+	}
+}
+
+$("#img").change(() => {
+	readURL($("#img")[0]);
+});

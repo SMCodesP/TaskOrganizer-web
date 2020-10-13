@@ -307,3 +307,53 @@ input#img {
   font-size: 0.9rem;
   color: #555;
 }
+
+.container-list-avatar {
+  width: 100%;
+  display: flex;
+}
+
+#modalOptions {
+  width: 100%;
+}
+
+#modalOptions .modal-dialog {
+  width: 80%;
+  padding: 15px;
+}
+
+.container-list-avatar img {
+  width: 64px;
+  border-radius: 25%;
+  border: 1px solid #333;
+  margin: 0 15px;
+  cursor: pointer;
+  transition: .2s all;
+}
+
+.container-list-avatar img:hover {
+  box-shadow: 0 0 2px #333;
+}
+
+.container-list-avatar label {
+  width: 64px;
+  height: 64px;
+  border-radius: 25%;
+  border: 1px solid #333;
+  margin: 0 15px;
+  cursor: pointer;
+  transition: .2s all;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28px;
+  background-size: 64px;
+}
+
+.container-list-avatar label:hover {
+  box-shadow: 0 0 2px #333;
+}
+
+.selected-avatar {
+  border: 2px solid #1aa12c !important;
+}
