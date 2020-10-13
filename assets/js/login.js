@@ -21,7 +21,7 @@ form.onsubmit = async (event) => {
   }
 
   try {
-    const response = await axios.post('https://tasks-organizer.herokuapp.com/session', {
+    const response = await axios.post('https://redeheroes-bot-v2.herokuapp.com/session', {
       username,
       password,
     })
