@@ -102,7 +102,7 @@
       try {
         const token = localStorage.getItem('token')
 
-        const {data: user} = await axios.get('https://tasks-organizer.herokuapp.com/user', {
+        const {data: user} = await axios.get('https://redeheroes-bot-v2.herokuapp.com/user', {
           headers: {
             Authorization: `Bearer ${token}`
           }
