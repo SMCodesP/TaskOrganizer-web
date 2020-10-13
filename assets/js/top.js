@@ -1,7 +1,7 @@
 window.onload = async () => {
 
   try {
-    const {data: positions} = await axios.get('https://tasks-organizer.herokuapp.com/podium')
+    const {data: positions} = await axios.get('https://redeheroes-bot-v2.herokuapp.com/podium')
 
     positions.forEach((position, index) => {
       $('#positions')[0].innerHTML += `
