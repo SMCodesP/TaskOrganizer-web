@@ -9,7 +9,7 @@ function openModalTask(modal) {
 
 async function takeOutTask(task) {
   try {
-    const response = await axios.put(`https://tasks-organizer.herokuapp.com/task/${task}?status=false`, null, {
+    const response = await axios.put(`https://redeheroes-bot-v2.herokuapp.com/task/${task}?status=false`, null, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`
       }
@@ -31,7 +31,7 @@ async function takeOutTask(task) {
 
 async function completeTask(task) {
   try {
-    const response = await axios.put(`https://tasks-organizer.herokuapp.com/task/${task}?status=true`, null, {
+    const response = await axios.put(`https://redeheroes-bot-v2.herokuapp.com/task/${task}?status=true`, null, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`
       }
@@ -157,7 +157,7 @@ add_new_task.onsubmit = async (event) => {
       due_timestamp: new Date(`${due_date} ${due_hour}`).valueOf(),
       description,
     }
-    await axios.post('https://tasks-organizer.herokuapp.com/task', task, {
+    await axios.post('https://redeheroes-bot-v2.herokuapp.com/task', task, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -181,12 +181,12 @@ window.onload = async () => {
   const token = localStorage.getItem('token')
 
   try {
-    const response = await axios.get('https://tasks-organizer.herokuapp.com/tasks?status=false', {
+    const response = await axios.get('https://redeheroes-bot-v2.herokuapp.com/tasks?status=false', {
       headers: {
         Authorization: `Bearer ${token}`
       }
     })
-    const responseCompleted = await axios.get('https://tasks-organizer.herokuapp.com/tasks?status=true', {
+    const responseCompleted = await axios.get('https://redeheroes-bot-v2.herokuapp.com/tasks?status=true', {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -220,7 +220,7 @@ function readURL(input) {
           formData.append('avatar_img', input.files[0])
   
           document.getElementById('user-icon').style.backgroundImage = `url('${e.target.result}')`
-          const responsePutAvatar = await axios.put('https://tasks-organizer.herokuapp.com/avatar', formData, {
+          const responsePutAvatar = await axios.put('https://redeheroes-bot-v2.herokuapp.com/avatar', formData, {
             headers: {
               Authorization: `Bearer ${token}`,
               "Content-Type": `multipart/form-data; boundary=${formData._boundary}`,
