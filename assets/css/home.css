@@ -60,6 +60,7 @@
   height: 116px;
   background-size: 116px 116px;
   background-repeat: no-repeat;
+  background-position: center;
   filter: brightness(115%);
   border-radius: 64px;
   top: 43px;
@@ -322,19 +323,6 @@ input#img {
   padding: 15px;
 }
 
-.container-list-avatar img {
-  width: 64px;
-  border-radius: 25%;
-  border: 1px solid #333;
-  margin: 0 15px;
-  cursor: pointer;
-  transition: .2s all;
-}
-
-.container-list-avatar img:hover {
-  box-shadow: 0 0 2px #333;
-}
-
 .container-list-avatar label {
   width: 64px;
   height: 64px;
@@ -348,6 +336,7 @@ input#img {
   align-items: center;
   font-size: 28px;
   background-size: 64px;
+  background-position: center;
 }
 
 .container-list-avatar label:hover {
