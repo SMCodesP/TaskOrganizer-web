@@ -44,7 +44,7 @@ async function handleSubmit() {
 		if (confirm_password !== password)
 			return alert('Erro » Sua senha e sua confirmação de senha devem ser iguais.')
 
-		const response = await axios.post('https://tasks-organizer.herokuapp.com/user', {
+		const response = await axios.post('https://redeheroes-bot-v2.herokuapp.com/user', {
 			username,
 			password,
 			confirm_password,
@@ -56,7 +56,7 @@ async function handleSubmit() {
 		let {token, user} = response.data;
 
 		if (avatar_img) {
-			const responsePutAvatar = await axios.put('https://tasks-organizer.herokuapp.com/avatar', formData, {
+			const responsePutAvatar = await axios.put('https://redeheroes-bot-v2.herokuapp.com/avatar', formData, {
 				headers: {
 					Authorization: `Bearer ${token}`,
 					"Content-Type": `multipart/form-data; boundary=${formData._boundary}`,
