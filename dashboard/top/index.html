@@ -35,7 +35,7 @@
     <ul class="menu">
       <li><a href="/dashboard">Tarefas</a></li>
       <li class="actived"><a>Top</a></li>
-      <li id="options"><a href="#">Definições</a></li>
+      <li id="options" data-toggle="modal" data-target="#modalOptions"><a href="#">Definições</a></li>
       <li class="logout" onclick="logout()"><a>Sair</a></li>
     </ul>
 
@@ -91,6 +91,37 @@
         class="etec"
       />
     </footer>
+    <div id="container_options">
+      <div class="modal fade" id="modalOptions" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Definições pessoal</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <input type="file" id="avatar_option_input" name="avatar_option_input" accept="image/*" style="display: none;">
+
+              <div class="container-list-avatar">
+                <label onclick="avatarClick(this)" class="avatar-option" id="dog" data-url="https://task.smcodes.tk/assets/images/dog.jpeg" style="background-image: url('../../assets/images/dog.jpeg')"></label>
+                <label onclick="avatarClick(this)" class="avatar-option" id="rabbit" data-url="https://task.smcodes.tk/assets/images/rabbit.jpeg" style="background-image: url('../../assets/images/rabbit.jpeg')"></label>
+                <label onclick="avatarClick(this)" class="avatar-option" id="monkey" data-url="https://task.smcodes.tk/assets/images/monkey.jpeg" style="background-image: url('../../assets/images/monkey.jpeg')"></label>
+                <label
+                  for="avatar_option_input"
+                  id="avatar-option"
+                >+</label>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+              <button type="submit" class="btn btn-primary" id="save">Salvar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
