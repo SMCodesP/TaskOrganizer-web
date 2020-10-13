@@ -68,6 +68,7 @@ $("#save")[0].onclick = async () => {
     await loadInfos()
     user.avatar_url = responsePutAvatar.data.avatar_url
     localStorage.setItem('user', JSON.stringify(user))
+    $('#modalOptions').modal('hide');
     alert('Você trocou de avatar com sucesso!')
   } catch (err) {
     console.log(err.response)
