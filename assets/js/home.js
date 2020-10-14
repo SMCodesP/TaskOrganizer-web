@@ -157,13 +157,13 @@ add_new_task.onsubmit = async (event) => {
       due_timestamp: new Date(`${due_date} ${due_hour}`).valueOf(),
       description,
     }
-    await axios.post('https://redeheroes-bot-v2.herokuapp.com/task', task, {
+    const response = await axios.post('https://redeheroes-bot-v2.herokuapp.com/task', task, {
       headers: {
         Authorization: `Bearer ${token}`
       }
     })
-
-    tasks.push(task)
+    
+    tasks.push(response.data)
     
     renderTasks(false)
     $('#add-new-task').trigger("reset");
